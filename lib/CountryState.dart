@@ -1,25 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    home: new MyApp(),
-  ));
-}
-
-class MyApp extends StatefulWidget {
-  @override
-  MyAppState createState() => new MyAppState();
-}
-
-class MyAppState extends State<MyApp> {
+class CountryState extends State<CountryApp> {
   List data;
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Load local JSON file"),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Country List"),
         ),
         body: new Container(
           child: new Center(
@@ -27,11 +16,10 @@ class MyAppState extends State<MyApp> {
             child: new FutureBuilder(
                 future: DefaultAssetBundle
                     .of(context)
-                    .loadString('data_repo/starwars_data.json'),
+                    .loadString('data/starwars_data.json'),
                 builder: (context, snapshot) {
                   // Decode the JSON
                   var new_data = JSON.decode(snapshot.data.toString());
-
                   return new ListView.builder(
                     // Build the ListView
                     itemBuilder: (BuildContext context, int index) {
@@ -61,4 +49,9 @@ class MyAppState extends State<MyApp> {
           ),
         ));
   }
+}
+
+class CountryApp extends StatefulWidget {
+  @override
+  CountryState createState() => new CountryState();
 }
