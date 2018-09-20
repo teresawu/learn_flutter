@@ -16,7 +16,7 @@ class CountryState extends State<CountryApp> {
             child: new FutureBuilder(
                 future: DefaultAssetBundle
                     .of(context)
-                    .loadString('data/starwars_data.json'),
+                    .loadString('data_repo/country.json'),
                 builder: (context, snapshot) {
                   // Decode the JSON
                   var new_data = JSON.decode(snapshot.data.toString());
@@ -28,17 +28,7 @@ class CountryState extends State<CountryApp> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             new Text("Name: " + new_data[index]['name']),
-                            new Text("Height: " + new_data[index]['height']),
-                            new Text("Mass: " + new_data[index]['mass']),
-                            new Text(
-                                "Hair Color: " + new_data[index]['hair_color']),
-                            new Text(
-                                "Skin Color: " + new_data[index]['skin_color']),
-                            new Text(
-                                "Eye Color: " + new_data[index]['eye_color']),
-                            new Text(
-                                "Birth Year: " + new_data[index]['birth_year']),
-                            new Text("Gender: " + new_data[index]['gender'])
+                            new Text("Code: " + new_data[index]['code'])
                           ],
                         ),
                       );
