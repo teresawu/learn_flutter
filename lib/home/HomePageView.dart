@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget getExpandedImage(String imagePath) {
+Expanded getExpandedImage(String imagePath) {
   return Expanded(
     child: Container(
       decoration: BoxDecoration(
@@ -12,7 +12,7 @@ Widget getExpandedImage(String imagePath) {
   );
 }
 
-Widget imageColumn() {
+Container imageColumn() {
   return Container(
     decoration: BoxDecoration(color: Colors.black12),
     padding: EdgeInsets.all(4.0),
@@ -35,9 +35,9 @@ Widget imageColumn() {
   );
 }
 
-Widget ratingRow() {
+Container ratingRow() {
   return Container(
-    margin: EdgeInsets.only(top: 100.0),
+    margin: EdgeInsets.only(top: 50.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[

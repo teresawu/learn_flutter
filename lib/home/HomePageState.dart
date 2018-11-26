@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample/home/HomePage.dart';
-import 'package:sample/home/HomePageWidget.dart';
+import 'package:sample/home/HomePageView.dart';
 
 class HomePageState extends State<HomePage> {
   TextEditingController controller = TextEditingController();
@@ -38,6 +38,9 @@ class HomePageState extends State<HomePage> {
             Form(
               child: TextFormField(
                 controller: controller,
+//                onFieldSubmitted: (newValue) {
+//                  sendData;
+//                },
                 decoration: InputDecoration(
                   labelText: "Send to WebSocket",
                 ),
