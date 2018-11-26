@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
-
-class HomePage extends StatefulWidget {
-  final String title;
-  final WebSocketChannel channel;
-
-  HomePage({Key key, @required this.title, @required this.channel})
-      : super(key: key);
-
-  @override
-  HomePageState createState() => HomePageState();
-}
+import 'package:sample/home/HomePage.dart';
+import 'package:sample/home/HomePageWidget.dart';
 
 class HomePageState extends State<HomePage> {
   TextEditingController controller = TextEditingController();
@@ -57,16 +47,9 @@ class HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: list.map((data) => Text(data)).toList(),
             ),
-
-//             StreamBuilder(
-//               stream: widget.channel.stream,
-//               builder: (context, snapshot) {
-//                 return Padding(
-//                   padding: const EdgeInsets.symmetric(vertical: 24.0),
-//                   child: Text(snapshot.hasData ? '${snapshot.data}' : ''),
-//                 );
-//               },
-//             ),
+            ratingRow(),
+            iconlist(),
+            imageColumn()
           ],
         ),
       ),

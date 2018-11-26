@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample/LayoutPage.dart';
+import 'package:sample/home/HomePage.dart';
+import 'package:web_socket_channel/io.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,13 +11,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-//      home: HomePage(
-//        title: 'Websocket App',
-//        channel: IOWebSocketChannel.connect('ws://echo.websocket.org'),
-//      ),
-        home:TestPage(
-      title:'test'
-    )
+      home: HomePage(
+        title: 'Websocket App',
+        channel: IOWebSocketChannel.connect('ws://echo.websocket.org'),
+      ),
     );
   }
 }
