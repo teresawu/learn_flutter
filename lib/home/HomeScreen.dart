@@ -10,9 +10,8 @@ class HomeScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePageWidget(
-        title: 'Websocket App',
-        channel: IOWebSocketChannel.connect('ws://echo.websocket.org'),
-      ),
+          title: "Home",
+          channel: IOWebSocketChannel.connect('ws://echo.websocket.org')),
     );
   }
 }
