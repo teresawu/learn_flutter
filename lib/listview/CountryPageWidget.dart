@@ -2,7 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-class CountryState extends State<CountryApp> {
+class CountryPageWidget extends StatefulWidget {
+  @override
+  CountryState createState() => new CountryState();
+}
+
+class CountryState extends State<CountryPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,9 +46,4 @@ class CountryState extends State<CountryApp> {
       ),
     );
   }
-}
-
-class CountryApp extends StatefulWidget {
-  @override
-  CountryState createState() => new CountryState();
 }

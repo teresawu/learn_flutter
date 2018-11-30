@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:sample/home/HomePage.dart';
 import 'package:sample/home/HomePageView.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
-class HomePageState extends State<HomePage> {
+class HomePageWidget extends StatefulWidget {
+  final String title;
+  final WebSocketChannel channel;
+
+  HomePageWidget({Key key, @required this.title, @required this.channel})
+      : super(key: key);
+
+  @override
+  HomePageState createState() => HomePageState();
+}
+
+class HomePageState extends State<HomePageWidget> {
   TextEditingController controller = TextEditingController();
   final List<String> list = [];
 
