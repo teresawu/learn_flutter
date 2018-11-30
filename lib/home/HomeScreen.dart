@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample/home/HomePageWidget.dart';
+import 'package:sample/util/Keys.dart';
 import 'package:web_socket_channel/io.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,8 +11,8 @@ class HomeScreen extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomePageWidget(
-          title: "Home",
-          channel: IOWebSocketChannel.connect('ws://echo.websocket.org')),
+          title: Keys.HOME,
+          channel: IOWebSocketChannel.connect(Keys.WEBSOCKET_LINK)),
     );
   }
 }

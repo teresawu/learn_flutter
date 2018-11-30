@@ -25,7 +25,8 @@ class MainScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 _padding(context, "Home Screen", HomeScreen()),
-                _padding(context, "List View", CountryScreen())
+                _padding(context, "List View", CountryScreen()),
+                _padding(context, "Video Screen", CountryScreen())
               ],
             )),
       ),

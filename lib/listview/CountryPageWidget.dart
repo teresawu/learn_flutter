@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:sample/util/Keys.dart';
 
 class CountryPageWidget extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class CountryState extends State<CountryPageWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Country List"),
+        title: Text(Keys.COUNTRY_LIST),
       ),
       body: _buildContainer(),
     );
@@ -23,12 +24,10 @@ class CountryState extends State<CountryPageWidget> {
       child: new Center(
         // Use future builder and DefaultAssetBundle to load the local JSON file
         child: new FutureBuilder(
-            future: DefaultAssetBundle
-                .of(context)
-                .loadString('data_repo/country.json'),
+            future: DefaultAssetBundle.of(context).loadString(Keys.JSON_PATH),
             builder: (context, snapshot) {
               // Decode the JSON
-              var new_data = JSON.decode(snapshot.data.toString());
+              var new_data = json.decode(snapshot.data.toString());
               return new ListView.builder(
                   padding: const EdgeInsets.all(14.0),
                   itemBuilder: (context, index) {

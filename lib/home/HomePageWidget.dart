@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sample/home/HomePageView.dart';
+import 'package:sample/util/Keys.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -49,11 +50,8 @@ class HomePageState extends State<HomePageWidget> {
             Form(
               child: TextFormField(
                 controller: controller,
-//                onFieldSubmitted: (newValue) {
-//                  sendData;
-//                },
                 decoration: InputDecoration(
-                  labelText: "Send to WebSocket",
+                  labelText: Keys.SEND_WEBSOCKET,
                 ),
               ),
             ),
@@ -70,7 +68,7 @@ class HomePageState extends State<HomePageWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.send),
         onPressed: sendData,
-        tooltip: 'Send message',
+        tooltip: Keys.SEND_MSG,
       ),
     );
   }
