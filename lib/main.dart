@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sample/home/HomeScreen.dart';
 import 'package:sample/listview/CountryScreen.dart';
+import 'package:sample/battery/BatteryScreen.dart';
+import 'package:sample/util/Keys.dart';
 
 void main() => runApp(MainPage());
 
@@ -24,9 +26,10 @@ class MainScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: <Widget>[
-                _padding(context, "Home Screen", HomeScreen()),
-                _padding(context, "List View", CountryScreen()),
-                _padding(context, "Video Screen", CountryScreen())
+                _padding(context, Keys.HOME_SCREEN, HomeScreen()),
+                _padding(context, Keys.LIST_VIEW, CountryScreen()),
+                _padding(context, Keys.GET_BATTERY_LEVEL, BatteryScreen()),
+                _padding(context, Keys.VIDEO_SCREEN, CountryScreen())
               ],
             )),
       ),

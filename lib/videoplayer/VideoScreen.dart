@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample/listview/CountryPageWidget.dart';
+import 'package:sample/listview/CountryWidget.dart';
 
 class VideoScreen extends StatelessWidget {
   @override
@@ -8,7 +8,7 @@ class VideoScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CountryPageWidget(),
+      home: CountryWidget(),
     );
   }
 }

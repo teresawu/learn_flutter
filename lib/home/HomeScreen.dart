@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample/home/HomePageWidget.dart';
+import 'package:sample/home/HomeViewModel.dart';
 import 'package:sample/util/Keys.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePageWidget(
+      home: HomeViewModel(
           title: Keys.HOME,
           channel: IOWebSocketChannel.connect(Keys.WEBSOCKET_LINK)),
     );
