@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample/listview/CountryWidget.dart';
+import 'package:learn/listview/CountryWidget.dart';
 
 class VideoScreen extends StatelessWidget {
   @override
