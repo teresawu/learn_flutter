@@ -11,7 +11,7 @@ class BatteryWidget extends StatefulWidget {
 
 class BatteryState extends State<BatteryWidget> {
   static const platform = const MethodChannel('samples.flutter.io/battery');
-  String _batteryLevel = Keys.GET_BATTERY_LEVEL;
+  String _batteryLevel = Keys.BATTERY_UNKNOWN;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class BatteryState extends State<BatteryWidget> {
               child: Text(Keys.GET_BATTERY_LEVEL),
               onPressed: _getBatteryLevel,
             ),
-            Text(_batteryLevel),
+            Text(_batteryLevel)
           ],
         ),
       ),
@@ -32,11 +32,16 @@ class BatteryState extends State<BatteryWidget> {
   }
 
   Future<void> _getBatteryLevel() async {
+    String batteryLevel;
     try {
-      final int result = await platform.invokeMethod(Keys.GET_BATTERY_FUNC);
-      _batteryLevel = 'Battery level at $result % .';
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
     } on PlatformException catch (e) {
-      _batteryLevel = "Failed to get battery level: '${e.message}'.";
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
     }
+
+    setState(() {
+      _batteryLevel = batteryLevel;
+    });
   }
 }

@@ -13,6 +13,7 @@ class Keys {
   //BATTERY LEVEL
   static String GET_BATTERY_LEVEL = 'Get Battery Level';
   static String GET_BATTERY_FUNC = 'getBatteryLevel';
+  static String BATTERY_UNKNOWN='Unknown battery level.';
 
   //MAIN
   static String HOME_SCREEN = 'Home Screen';
