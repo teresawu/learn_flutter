@@ -9,11 +9,7 @@ class BatteryWidget extends StatefulWidget {
 class BatteryState extends State<BatteryWidget> {
   static const MethodChannel methodChannel =
   MethodChannel('samples.flutter.io/battery');
-  static const EventChannel eventChannel =
-  EventChannel('samples.flutter.io/charging');
-
   String _batteryLevel = 'Battery level: unknown.';
-  String _chargingStatus = 'Battery status: unknown.';
 
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
@@ -31,13 +27,7 @@ class BatteryState extends State<BatteryWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Battery"),
-        leading: new IconButton(
-          icon: new Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
+      appBar: AppBar(title: Text("Battery")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -55,29 +45,9 @@ class BatteryState extends State<BatteryWidget> {
                 ),
               ],
             ),
-            Text(_chargingStatus),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    eventChannel.receiveBroadcastStream().listen(_onEvent, onError: _onError);
-  }
-
-  void _onEvent(Object event) {
-    setState(() {
-      _chargingStatus =
-      "Battery status: ${event == 'charging' ? '' : 'dis'}charging.";
-    });
-  }
-
-  void _onError(Object error) {
-    setState(() {
-      _chargingStatus = 'Battery status: unknown.';
-    });
   }
 }

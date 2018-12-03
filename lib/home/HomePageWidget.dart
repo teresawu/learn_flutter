@@ -40,7 +40,7 @@ class HomePageState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title),),
+      appBar: AppBar(title: Text(widget.title)),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
