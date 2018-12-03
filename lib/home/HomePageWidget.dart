@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample/home/HomePageView.dart';
-import 'package:sample/util/Keys.dart';
+import 'package:flutter_app/home/HomePageView.dart';
+import 'package:flutter_app/util/Keys.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class HomePageWidget extends StatefulWidget {

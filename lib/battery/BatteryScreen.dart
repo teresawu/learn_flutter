@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample/battery/BatteryWidget.dart';
+import 'package:flutter_app/battery/BatteryWidget.dart';
 
 class BatteryScreen extends StatelessWidget {
   @override

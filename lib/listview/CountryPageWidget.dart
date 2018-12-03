@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:sample/util/Keys.dart';
+import 'package:flutter_app/util/Keys.dart';
 
 class CountryPageWidget extends StatefulWidget {
   @override

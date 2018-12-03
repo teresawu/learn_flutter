@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sample/battery/BatteryScreen.dart';
-import 'package:sample/home/HomeScreen.dart';
-import 'package:sample/listview/CountryScreen.dart';
+import 'package:flutter_app/battery/BatteryScreen.dart';
+import 'package:flutter_app/home/HomeScreen.dart';
+import 'package:flutter_app/listview/CountryScreen.dart';
 
 void main() => runApp(MainPage());
 

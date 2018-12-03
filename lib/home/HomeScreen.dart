@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample/home/HomePageWidget.dart';
-import 'package:sample/util/Keys.dart';
+import 'package:flutter_app/home/HomePageWidget.dart';
+import 'package:flutter_app/util/Keys.dart';
 import 'package:web_socket_channel/io.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample/listview/CountryPageWidget.dart';
+import 'package:flutter_app/listview/CountryPageWidget.dart';
 
 class CountryScreen extends StatelessWidget {
   @override
