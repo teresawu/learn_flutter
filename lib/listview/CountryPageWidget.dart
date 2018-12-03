@@ -12,9 +12,7 @@ class CountryState extends State<CountryPageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(Keys.COUNTRY_LIST),
-      ),
+      appBar: AppBar(title: Text(Keys.COUNTRY_LIST)),
       body: _buildContainer(),
     );
   }
