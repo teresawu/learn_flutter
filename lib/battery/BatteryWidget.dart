@@ -21,7 +21,7 @@ class BatteryState extends State<BatteryWidget> {
     String batteryLevel;
     try {
       final int result = await methodChannel.invokeMethod('getBatteryLevel');
-      batteryLevel = 'Battery level: $result%.';
+      batteryLevel = 'new Battery level: $result%.';
     } on PlatformException {
       batteryLevel = 'Failed to get battery level.';
     }
