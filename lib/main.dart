@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/battery/BatteryScreen.dart';
 import 'package:flutter_app/home/HomeScreen.dart';
 import 'package:flutter_app/listview/CountryScreen.dart';
+import 'package:flutter_app/videoplayer/VideoScreen.dart';
 
 void main() => runApp(MainPage());
 
@@ -27,7 +28,7 @@ class MainScreen extends StatelessWidget {
               children: <Widget>[
                 _padding(context, "Home Screen", HomeScreen()),
                 _padding(context, "List View", CountryScreen()),
-                _padding(context, "Video Screen", CountryScreen()),
+                _padding(context, "Video Screen", VideoScreen()),
                 _padding(context, "Battery", BatteryScreen(), platform: true)
               ],
             )),

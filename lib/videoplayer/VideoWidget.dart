@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/videoplayer/VideoAnimation.dart';
+import 'package:flutter_app/videoplayer/VideoView.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
-  VideoWidget(this.controller);
-
   final VideoPlayerController controller;
 
+  VideoWidget(@required this.controller);
+
   @override
-  State createState() {
-    return _VideoPlayPauseState();
-  }
+  VideoPlayPauseState createState() => VideoPlayPauseState();
 }
 
-class _VideoPlayPauseState extends State<VideoWidget> {
-  _VideoPlayPauseState() {
+class VideoPlayPauseState extends State<VideoWidget> {
+  VideoPlayPauseState() {
     listener = () {
       setState(() {});
     };
@@ -80,181 +80,6 @@ class _VideoPlayPauseState extends State<VideoWidget> {
       children: children,
     );
   }
-}
-
-class FadeAnimation extends StatefulWidget {
-  FadeAnimation(
-      {this.child, this.duration = const Duration(milliseconds: 500)});
-
-  final Widget child;
-  final Duration duration;
-
-  @override
-  _FadeAnimationState createState() => _FadeAnimationState();
-}
-
-class _FadeAnimationState extends State<FadeAnimation>
-    with SingleTickerProviderStateMixin {
-  AnimationController animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    animationController =
-        AnimationController(duration: widget.duration, vsync: this);
-    animationController.addListener(() {
-      if (mounted) {
-        setState(() {});
-      }
-    });
-    animationController.forward(from: 0.0);
-  }
-
-  @override
-  void deactivate() {
-    animationController.stop();
-    super.deactivate();
-  }
-
-  @override
-  void didUpdateWidget(FadeAnimation oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.child != widget.child) {
-      animationController.forward(from: 0.0);
-    }
-  }
-
-  @override
-  void dispose() {
-    animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return animationController.isAnimating
-        ? Opacity(
-            opacity: 1.0 - animationController.value,
-            child: widget.child,
-          )
-        : Container();
-  }
-}
-
-typedef Widget VideoWidgetBuilder(
-    BuildContext context, VideoPlayerController controller);
-
-abstract class PlayerLifeCycle extends StatefulWidget {
-  PlayerLifeCycle(this.dataSource, this.childBuilder);
-
-  final VideoWidgetBuilder childBuilder;
-  final String dataSource;
-}
-
-/// A widget connecting its life cycle to a [VideoPlayerController] using
-/// a data source from the network.
-class NetworkPlayerLifeCycle extends PlayerLifeCycle {
-  NetworkPlayerLifeCycle(String dataSource, VideoWidgetBuilder childBuilder)
-      : super(dataSource, childBuilder);
-
-  @override
-  _NetworkPlayerLifeCycleState createState() => _NetworkPlayerLifeCycleState();
-}
-
-/// A widget connecting its life cycle to a [VideoPlayerController] using
-/// an asset as data source
-class AssetPlayerLifeCycle extends PlayerLifeCycle {
-  AssetPlayerLifeCycle(String dataSource, VideoWidgetBuilder childBuilder)
-      : super(dataSource, childBuilder);
-
-  @override
-  _AssetPlayerLifeCycleState createState() => _AssetPlayerLifeCycleState();
-}
-
-abstract class _PlayerLifeCycleState extends State<PlayerLifeCycle> {
-  VideoPlayerController controller;
-
-  @override
-
-  /// Subclasses should implement [createVideoPlayerController], which is used
-  /// by this method.
-  void initState() {
-    super.initState();
-    controller = createVideoPlayerController();
-    controller.addListener(() {
-      if (controller.value.hasError) {
-        print(controller.value.errorDescription);
-      }
-    });
-    controller.initialize();
-    controller.setLooping(true);
-    controller.play();
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.childBuilder(context, controller);
-  }
-
-  VideoPlayerController createVideoPlayerController();
-}
-
-class _NetworkPlayerLifeCycleState extends _PlayerLifeCycleState {
-  @override
-  VideoPlayerController createVideoPlayerController() {
-    return VideoPlayerController.network(widget.dataSource);
-  }
-}
-
-class _AssetPlayerLifeCycleState extends _PlayerLifeCycleState {
-  @override
-  VideoPlayerController createVideoPlayerController() {
-    return VideoPlayerController.asset(widget.dataSource);
-  }
-}
-
-/// A filler card to show the video in a list of scrolling contents.
-Widget buildCard(String title) {
-  return Card(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        ListTile(
-          leading: const Icon(Icons.airline_seat_flat_angled),
-          title: Text(title),
-        ),
-        ButtonTheme.bar(
-          child: ButtonBar(
-            children: <Widget>[
-              FlatButton(
-                child: const Text('BUY TICKETS'),
-                onPressed: () {
-                  /* ... */
-                },
-              ),
-              FlatButton(
-                child: const Text('SELL TICKETS'),
-                onPressed: () {
-                  /* ... */
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
 }
 
 class VideoInListOfCards extends StatelessWidget {

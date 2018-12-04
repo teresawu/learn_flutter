@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/videoplayer/VideoView.dart';
+import 'package:flutter_app/videoplayer/VideoLifeCycle.dart';
 import 'package:flutter_app/videoplayer/VideoWidget.dart';
 import 'package:video_player/video_player.dart';
+import 'package:flutter_app/videoplayer/VideoView.dart';
 
 class VideoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
