@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/util/View.dart';
 
 Expanded getExpandedImage(String imagePath) {
   return Expanded(
@@ -58,7 +59,7 @@ Container ratingRow() {
 
 Widget iconlist() {
   return DefaultTextStyle.merge(
-    style: _descTextStyle,
+    style: View().defaultTextStyle(),
     child: Container(
       padding: EdgeInsets.all(20.0),
       child: Row(
@@ -90,12 +91,3 @@ Widget iconlist() {
     ),
   );
 }
-
-final _descTextStyle = TextStyle(
-  color: Colors.black,
-  fontWeight: FontWeight.w800,
-  fontFamily: 'Roboto',
-  letterSpacing: 0.5,
-  fontSize: 18.0,
-  height: 2.0,
-);

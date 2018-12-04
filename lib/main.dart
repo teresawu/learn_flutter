@@ -28,7 +28,7 @@ class MainScreen extends StatelessWidget {
                 _padding(context, "Home Screen", HomeScreen()),
                 _padding(context, "List View", CountryScreen()),
                 _padding(context, "Video Screen", CountryScreen()),
-                _padding(context, "Battery", BatteryScreen())
+                _padding(context, "Battery", BatteryScreen(), platform: true)
               ],
             )),
       ),
@@ -36,7 +36,18 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-Padding _padding(BuildContext context, String name, StatelessWidget screen) {
+IconData _icon(BuildContext context, bool displayPlatform) {
+  if (displayPlatform) {
+    if (Theme.of(context).platform == TargetPlatform.iOS)
+      return Icons.battery_charging_full;
+    else
+      return Icons.android;
+  } else
+    return null;
+}
+
+Padding _padding(BuildContext context, String name, StatelessWidget screen,
+    {@required bool platform = false}) {
   return Padding(
       padding: const EdgeInsets.all(14.0),
       child: MaterialButton(
@@ -46,12 +57,18 @@ Padding _padding(BuildContext context, String name, StatelessWidget screen) {
         elevation: 4.0,
         splashColor: Colors.blueGrey,
         textColor: Colors.white,
-        child: Text(name, style: TextStyle(fontSize: 20.0)),
         onPressed: () {
           Navigator.push(
             context,
             new MaterialPageRoute(builder: (context) => screen),
           );
         },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(name, style: TextStyle(fontSize: 18.0)),
+            Icon(_icon(context, platform)),
+          ],
+        ),
       ));
 }
