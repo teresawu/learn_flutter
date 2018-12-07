@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/videoplayer/VideoAnimation.dart';
-import 'package:flutter_app/videoplayer/VideoView.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
@@ -20,8 +18,6 @@ class VideoPlayPauseState extends State<VideoWidget> {
     };
   }
 
-  FadeAnimation imageFadeAnim =
-      FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
   VoidCallback listener;
 
   VideoPlayerController get controller => widget.controller;
@@ -50,15 +46,10 @@ class VideoPlayPauseState extends State<VideoWidget> {
           if (!controller.value.initialized) {
             return;
           }
-          if (controller.value.isPlaying) {
-            imageFadeAnim =
-                FadeAnimation(child: const Icon(Icons.pause, size: 100.0));
+          if (controller.value.isPlaying)
             controller.pause();
-          } else {
-            imageFadeAnim =
-                FadeAnimation(child: const Icon(Icons.play_arrow, size: 100.0));
+          else
             controller.play();
-          }
         },
       ),
       Align(
@@ -68,7 +59,6 @@ class VideoPlayPauseState extends State<VideoWidget> {
           allowScrubbing: true,
         ),
       ),
-      Center(child: imageFadeAnim),
       Center(
           child: controller.value.isBuffering
               ? const CircularProgressIndicator()

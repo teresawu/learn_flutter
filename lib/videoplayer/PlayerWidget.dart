@@ -5,34 +5,19 @@ import 'package:video_player/video_player.dart';
 typedef Widget VideoWidgetBuilder(
     BuildContext context, VideoPlayerController controller);
 
-abstract class PlayerLifeCycle extends StatefulWidget {
-  PlayerLifeCycle(this.dataSource, this.childBuilder);
-
-  final VideoWidgetBuilder childBuilder;
-  final String dataSource;
-}
-
 /// A widget connecting its life cycle to a [VideoPlayerController] using
 /// a data source from the network.
-class NetworkPlayerLifeCycle extends PlayerLifeCycle {
-  NetworkPlayerLifeCycle(String dataSource, VideoWidgetBuilder childBuilder)
-      : super(dataSource, childBuilder);
+class PlayerWidget extends StatefulWidget {
+  final VideoWidgetBuilder childBuilder;
+  final String dataSource;
+
+  PlayerWidget(this.dataSource, this.childBuilder) : super();
 
   @override
   _NetworkPlayerLifeCycleState createState() => _NetworkPlayerLifeCycleState();
 }
 
-/// A widget connecting its life cycle to a [VideoPlayerController] using
-/// an asset as data source
-class AssetPlayerLifeCycle extends PlayerLifeCycle {
-  AssetPlayerLifeCycle(String dataSource, VideoWidgetBuilder childBuilder)
-      : super(dataSource, childBuilder);
-
-  @override
-  _AssetPlayerLifeCycleState createState() => _AssetPlayerLifeCycleState();
-}
-
-abstract class _PlayerLifeCycleState extends State<PlayerLifeCycle> {
+abstract class _PlayerLifeCycleState extends State<PlayerWidget> {
   VideoPlayerController controller;
 
   @override
@@ -75,12 +60,5 @@ class _NetworkPlayerLifeCycleState extends _PlayerLifeCycleState {
   @override
   VideoPlayerController createVideoPlayerController() {
     return VideoPlayerController.network(widget.dataSource);
-  }
-}
-
-class _AssetPlayerLifeCycleState extends _PlayerLifeCycleState {
-  @override
-  VideoPlayerController createVideoPlayerController() {
-    return VideoPlayerController.asset(widget.dataSource);
   }
 }
