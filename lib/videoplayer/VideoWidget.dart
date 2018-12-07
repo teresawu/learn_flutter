@@ -82,50 +82,6 @@ class VideoPlayPauseState extends State<VideoWidget> {
   }
 }
 
-class VideoInListOfCards extends StatelessWidget {
-  VideoInListOfCards(this.controller);
-
-  final VideoPlayerController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        buildCard("Item a"),
-        buildCard("Item b"),
-        buildCard("Item c"),
-        buildCard("Item d"),
-        buildCard("Item e"),
-        buildCard("Item f"),
-        buildCard("Item g"),
-        Card(
-            child: Column(children: <Widget>[
-          Column(
-            children: <Widget>[
-              const ListTile(
-                leading: Icon(Icons.cake),
-                title: Text("Video video"),
-              ),
-              Stack(
-                  alignment: FractionalOffset.bottomRight +
-                      const FractionalOffset(-0.1, -0.1),
-                  children: <Widget>[
-                    AspectRatioVideo(controller),
-                    Image.asset('assets/flutter-mark-square-64.png'),
-                  ]),
-            ],
-          ),
-        ])),
-        buildCard("Item h"),
-        buildCard("Item i"),
-        buildCard("Item j"),
-        buildCard("Item k"),
-        buildCard("Item l"),
-      ],
-    );
-  }
-}
-
 class AspectRatioVideo extends StatefulWidget {
   AspectRatioVideo(this.controller);
 
