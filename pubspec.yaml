@@ -32,6 +32,7 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
       - data_repo/country.json
+      - data_repo/coco.mp4
       - image/1.jpg
       - image/2.jpg
       - image/3.jpg

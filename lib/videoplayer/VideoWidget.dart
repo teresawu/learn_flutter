@@ -3,31 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
-  final VideoPlayerController controller;
+  final String videoURL;
 
-  VideoWidget(@required this.controller);
+  VideoWidget(this.videoURL) : super();
 
   @override
-  VideoPlayPauseState createState() => VideoPlayPauseState();
+  VideoState createState() => VideoState();
 }
 
-class VideoPlayPauseState extends State<VideoWidget> {
-  VideoPlayPauseState() {
-    listener = () {
-      setState(() {});
-    };
-  }
-
+class VideoState extends State<VideoWidget> {
+  VideoPlayerController controller;
   VoidCallback listener;
 
-  VideoPlayerController get controller => widget.controller;
 
   @override
   void initState() {
     super.initState();
-    controller.addListener(listener);
-    controller.setVolume(1.0);
-    controller.play();
+
+    listener = () {
+      setState(() {});
+    };
+
+    controller = VideoPlayerController.asset(widget.videoURL)
+      ..addListener(listener)
+      ..setVolume(1.0)
+      ..initialize()
+      ..play();
   }
 
   @override
@@ -39,81 +40,26 @@ class VideoPlayPauseState extends State<VideoWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = <Widget>[
-      GestureDetector(
-        child: VideoPlayer(controller),
-        onTap: () {
-          if (!controller.value.initialized) {
-            return;
-          }
-          if (controller.value.isPlaying)
-            controller.pause();
-          else
-            controller.play();
-        },
-      ),
-      Align(
-        alignment: Alignment.bottomCenter,
-        child: VideoProgressIndicator(
-          controller,
-          allowScrubbing: true,
+    return Scaffold(
+      appBar: AppBar(title: Text("Video Player")),
+      body: Center(
+          child: AspectRatio(
+              aspectRatio: 16 / 9,
+              child: Container(
+                padding: EdgeInsets.all(4.0),
+                child: (controller != null
+                    ? VideoPlayer(
+                        controller,
+                      )
+                    : Container()),
+              ))),
+      floatingActionButton: FloatingActionButton(
+        onPressed:
+            controller.value.isPlaying ? controller.pause : controller.play,
+        child: Icon(
+          controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
       ),
-      Center(
-          child: controller.value.isBuffering
-              ? const CircularProgressIndicator()
-              : null),
-    ];
-
-    return Stack(
-      fit: StackFit.passthrough,
-      children: children,
     );
-  }
-}
-
-class AspectRatioVideo extends StatefulWidget {
-  AspectRatioVideo(this.controller);
-
-  final VideoPlayerController controller;
-
-  @override
-  AspectRatioVideoState createState() => AspectRatioVideoState();
-}
-
-class AspectRatioVideoState extends State<AspectRatioVideo> {
-  VideoPlayerController get controller => widget.controller;
-  bool initialized = false;
-
-  VoidCallback listener;
-
-  @override
-  void initState() {
-    super.initState();
-    listener = () {
-      if (!mounted) {
-        return;
-      }
-      if (initialized != controller.value.initialized) {
-        initialized = controller.value.initialized;
-        setState(() {});
-      }
-    };
-    controller.addListener(listener);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (initialized) {
-      final Size size = controller.value.size;
-      return Center(
-        child: AspectRatio(
-          aspectRatio: size.width / size.height,
-          child: VideoWidget(controller),
-        ),
-      );
-    } else {
-      return Container();
-    }
   }
 }
