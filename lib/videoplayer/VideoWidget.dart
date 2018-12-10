@@ -44,7 +44,7 @@ class VideoState extends State<VideoWidget> {
       appBar: AppBar(title: Text("Video Player")),
       body: Center(
           child: AspectRatio(
-              aspectRatio: 16 / 9,
+              aspectRatio: controller.value.aspectRatio,
               child: Container(
                 padding: EdgeInsets.all(4.0),
                 child: (controller != null
